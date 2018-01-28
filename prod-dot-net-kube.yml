@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kube-dotnet-prod
+spec:
+  template:
+    metadata:
+      name: kube-dotnet-prod
+      labels:
+        run: kube-dotnet-prod
+    spec:
+      containers:
+        - name: dotnetapp-prod
+          image: "mycluster.icp:8500/dev/dotnetappprod:latest"
+          imagePullPolicy: Always
+      restartPolicy: Never

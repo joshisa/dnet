@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kube-dotnet
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: kube-dotnet
+      labels:
+        run: kube-dotnet
+    spec:
+      containers:
+        - name: dotnet1
+          image: "mycluster.icp:8500/dev/aspnetapp:latest"
+          imagePullPolicy: Always
+          env:
+            - name: VCAP_SERVICES
+              valueFrom:
+                secretKeyRef:
+                  name: binding-rates-cloudant-cred1
+                  key: binding
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-dotnet
+  labels:
+    run: kube-dotnet
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 80
+  selector:
+    run: kube-dotnet
+  type: LoadBalancer

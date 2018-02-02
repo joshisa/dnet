@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: aspnetapp
-          image: "mycluster.icp:8500/dev/aspnetapp:latest"
+          image: "mycluster.icp:8500/default/aspnetapp:demo"
           imagePullPolicy: Always
 ---
 apiVersion: v1

@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
         - name: dotnetapp-prod
-          image: "mycluster.icp:8500/dev/dotnetappprod:latest"
+          image: "mycluster.icp:8500/default/dotnetappprod:demo"
           imagePullPolicy: Always
       restartPolicy: Never

@@ -42,10 +42,10 @@ namespace aspnetapp
             if (basePath != null)
             {
                 Console.WriteLine($"Using base path '{basePath}'");
-                app.UsePathBase($"/{basePath}");
+                app.UsePathBase($"{basePath}");
                 app.Use((context, next) =>
                 {
-                    context.Request.PathBase = new PathString($"/{basePath}");
+                    context.Request.PathBase = new PathString($"{basePath}");
                     return next();
                 });
             }

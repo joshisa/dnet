@@ -38,8 +38,10 @@ metadata:
   name: kube-dotnet-ingress
   namespace: default
   annotations:
+    ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^(/aspnet/)$ $1/ permanent;
     ingress.kubernetes.io/rewrite-target: /
-    ingress.kubernetes.io/ssl-redirect: "false"
+    ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
   - http:

@@ -27,4 +27,4 @@ spec:
   - port: 80
   selector:
     run: kube-dotnet
-  type: LoadBalancer
+  type: ClusterIP

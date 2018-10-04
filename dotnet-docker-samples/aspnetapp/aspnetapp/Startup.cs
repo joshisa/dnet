@@ -38,6 +38,16 @@ namespace aspnetapp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var basePath = Configuration.GetSection("BASE_PATH").Value;
+            if (basePath != null)
+            {
+                Console.WriteLine($"Using base path '{basePath}'");
+                app.Use((context, next) =>
+                {
+                    context.Request.PathBase = new PathString($"/{basePath}");
+                    return next();
+                });
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

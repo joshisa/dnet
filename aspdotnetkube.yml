@@ -31,22 +31,3 @@ spec:
   selector:
     run: kube-dotnet
   type: ClusterIP
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: kube-dotnet-ingress
-  namespace: default
-  annotations:
-    ingress.kubernetes.io/configuration-snippet: |
-      rewrite ^(/aspnet/)$ $1/ permanent;
-    ingress.kubernetes.io/rewrite-target: /
-    ingress.kubernetes.io/ssl-redirect: "true"
-spec:
-  rules:
-  - http:
-      paths:
-      - backend:
-          serviceName: kube-dotnet
-          servicePort: 80
-        path: /aspnet
